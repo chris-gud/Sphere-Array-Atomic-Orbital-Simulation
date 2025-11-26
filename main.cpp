@@ -2,34 +2,34 @@
 ---------------------------------- By Chris Gudmundsen ---------------------------------------------
 -------------------------------------- Dec. 2024 ---------------------------------------------------
  
-  This program is meant to graph and display the probability density functions of an electron in the
-hydrogen atom. Once the user enters their desired quantum numbers, a window is created with 3 axes
-and several spheres arranged in a cube. The electron probability density at several points in 3D space 
-is represented by the radius of the sphere at that location. The origin of the axis represents the 
-nucleus of the hydrogen atom. The maximum radius for each orbital is arbitrary - it has been 
-manually fitted to be visually appealing and clear (this means that it is not recommended to
+ This program is meant to calculate and display the probability density functions of an electron in
+the hydrogen atom. Once the user enters their desired quantum numbers, a window is created with 3 axes
+and several spheres arranged in a cube. The origin of the axis represents the nucleus of the
+hydrogen atom. The electron probability density at several points in 3D space is represented by the
+radius of the sphere at that location. The maximum radius for each orbital is arbitrary - it has
+been manually fitted to be visually appealing and clear (this means that it is not recommended to
 draw conclusions from radius size when comparing orbitals stemming from different combinations of
 quantum numbers). In addition, the scale of the axes change from orbital to orbital. They have been
 manually set to display the most interesting parts of each orbital clearly. The viewer can assume
 that the probability density decreases to 0 outside of the axis volume. The scale of the axes for
 each orbital is printed to terminal for the viewer's reference.
- 
-  How is this simulation different from the rest? Most depictions of the orbitals of the hydrogen 
-atom depict a surface. The creator chooses some cutoff probability (90% usually) for which to depict
-a surface, within which the electron has that cutoff probability of existing inside of at any time. 
-However, this fails to convey a lot of information; the viewer cannot visualize the probability 
-densities within the surface. A naive viewer may be led to believe that the probability density is 
-thus uniform within the surface. This is not the case. This program is meant to prove it.
 
-CONTROLS: 
+ How is this simulation different from the rest? Most depictions of the orbitals of the hydrogen
+atom depict a surface called an isosurface, where points of constant probability are bridged to form
+a surface However, this misplaces a lot of information; the viewer cannot visualize the probability
+densities within the surface. A naive viewer may be led to believe that the probability density is thus
+uniform within the surface. This is not the case. This program is meant to prove it.
 
-  W : move forwards into the plane of the screen
-  S : move backwards away from the plane of the screen
-  A : move left upon the plane of the screen
-  D : move right upon the plane of the screen
-  Mouse : click and drag to change camera angle
 
-SEE README FOR EXAMPLE IMAGES
+CONTROLS:
+
+ W : move forwards into the plane of the screen
+ S : move backwards away from the plane of the screen
+ A : move left upon the plane of the screen
+ D : move right upon the plane of the screen
+ CNTRL : down (-y)
+ SPACE : up (+y)
+
 
 ----------------------------------- ACKNOWLEDGEMENTS -----------------------------------------------
  
@@ -41,8 +41,6 @@ from Youtube "OpenGL Course - Create 3D and 2D Graphics With C++" by freeCodeCam
 (Github VictorGordan/opengl-tutorials)
 https://www.youtube.com/watch?v=45MIykWJ-C4
 https://github.com/VictorGordan/opengl-tutorials
-
-Glad library
 
 --------------------------------------------------------------------------------------------------*/
 
@@ -327,7 +325,7 @@ int main()
     std::string parentDir = (fs::current_path().fs::path::parent_path()).string();
 
     //--------------------------- END USER INPUT ---------------------------------------------------------//
-    std::cout << "Hydrogen Atom Orbital Simulator. (Currently only n=1,2,3, l=0,1,2, ml=+/-0,1,2 are supported)\n";
+    std::cout << "Hydrogen Atom Orbital Simulator.\n";// (Currently only n=1,2,3, l=0,1,2, ml=+/-0,1,2 are supported)\n";
     std::cout << "Enter desired principal quantum number........ n = ";
     std::cin >> n;
     std::cout << "Enter desired angular momentum quantum number. l = ";
@@ -508,7 +506,7 @@ int main()
         }
         
     } else if (n == 2 && l == 0 && ml == 0) {
-        std::cout << "Scale factor: axes extend to 1 Bohr (0.5 A).\n";
+        std::cout << "Scale factor: axes extend to 2 Bohr (1.0 A).\n";
         // Nested for loops traverse a cube centered on the origin in 3D space
         for (int i = 0; i < numSpheres_per_side; i++) {
             for (int j = 0; j < numSpheres_per_side; j++) {
@@ -523,8 +521,8 @@ int main()
                     GLfloat theta = theta_of(x,y,z);
                     GLfloat phi = phi_of(x,y,z);
                     
-                    // conversion factor: 5.0 = 1 Bohr radius
-                    GLfloat probDensity = _200_eq(r/5.0f,theta,phi);
+                    // conversion factor: 2.5 = 1 Bohr radius
+                    GLfloat probDensity = _200_eq(r/2.5f,theta,phi);
                     //std::cout << "Prob Density is: " << probDensity << std::endl;
                     
                     // Conversion factor: step/2 => sphereRadius is maximum (subject to change)
@@ -859,7 +857,7 @@ int main()
             }
         }
     } else if (n == 3 && l == 0 && ml == 0) {
-        std::cout << "Scale factor: axes extend to 5 Bohr (2.5 A).\n";
+        std::cout << "Scale factor: axes extend to 10 Bohr (5.0 A).\n";
         // Nested for loops traverse a cube centered on the origin in 3D space
         for (int i = 0; i < numSpheres_per_side; i++) {
             for (int j = 0; j < numSpheres_per_side; j++) {
@@ -874,8 +872,8 @@ int main()
                     GLfloat theta = theta_of(x,y,z);
                     GLfloat phi = phi_of(x,y,z);
                     
-                    // conversion factor: 1.0 = 1 Bohr radius
-                    GLfloat probDensity = _300_eq(r/1.0,theta,phi);
+                    // conversion factor: 0.5 = 1 Bohr radius
+                    GLfloat probDensity = _300_eq(r/0.5,theta,phi);
                     //std::cout << "Prob Density is: " << probDensity << std::endl;
                     
                     // Conversion factor: step/2 => sphereRadius is maximum (subject to change)
@@ -976,7 +974,7 @@ int main()
             }
         }
     } else if (n == 3 && l == 1 && ml == 0) {
-        std::cout << "Scale factor: axes extend to 6.7 Bohr (3.3 A).\n";
+        std::cout << "Scale factor: axes extend to 7.5 Bohr (3.75 A).\n";
         // Nested for loops traverse a cube centered on the origin in 3D space
         for (int i = 0; i < numSpheres_per_side; i++) {
             for (int j = 0; j < numSpheres_per_side; j++) {
@@ -991,8 +989,8 @@ int main()
                     GLfloat theta = theta_of(x,y,z);
                     GLfloat phi = phi_of(x,y,z);
                     
-                    // conversion factor: 0.75 = 1 Bohr radius
-                    GLfloat probDensity = _310_eq(r/0.75f,theta,phi);
+                    // conversion factor: 0.666666666 = 1 Bohr radius
+                    GLfloat probDensity = _310_eq(r/0.666666666f,theta,phi);
                     //std::cout << "Prob Density is: " << probDensity << std::endl;
                     
                     // Conversion factor: step/2 => sphereRadius is maximum (subject to change)
@@ -1109,7 +1107,7 @@ int main()
                     GLfloat phi = phi_of(x,y,z);
                     
                     // conversion factor: 0.75 = 1 Bohr radius
-                    GLfloat probDensity = _311_eq(r/0.75f,theta,phi);
+                    GLfloat probDensity = _311_eq(r/0.666666666666f,theta,phi);
                     
                     // Conversion factor: step/2 => sphereRadius is maximum (subject to change)
                     // maximum of the 2s prob density
@@ -1225,7 +1223,7 @@ int main()
                     GLfloat phi = phi_of(x,y,z);
                     
                     // conversion factor: 0.5 = 1 Bohr radius
-                    GLfloat probDensity = _320_eq(r/0.5f,theta,phi);
+                    GLfloat probDensity = _320_eq(r/0.4f,theta,phi);
                     
                     // Conversion factor: step/2 => sphereRadius is maximum (subject to change)
                     // maximum of the 2s prob density
@@ -1882,16 +1880,14 @@ int main()
 //------------------------------------FUNCTIONS----------------------------------------------------//
 
 GLfloat r_of (GLfloat x, GLfloat y, GLfloat z) {
-    //std::cout << "r is : " << sqrt(pow(x,2) + pow(y,2) + pow(z,2))<< std::endl;
-    return sqrt(pow(x,2) + pow(y,2) + pow(z,2));
+    return sqrt(x*x + y*y + z*z);
 }
 GLfloat theta_of (GLfloat x, GLfloat y, GLfloat z) {
-    //std::cout << "theta is : " << atan(y/x)<< std::endl;
-    return atan(y/x);
+    GLfloat r = sqrt(x*x + y*y + z*z);
+    return acos(z / r);
 }
 GLfloat phi_of (GLfloat x, GLfloat y, GLfloat z) {
-    //std::cout << "phi is : " << acos(z / sqrt(pow(x,2) + pow(y,2) + pow(z,2))) << std::endl;
-    return acos(z / sqrt(pow(x,2) + pow(y,2) + pow(z,2)));
+    return atan2(y, x);
 }
 
 //-----------------------------------EQUATIONS-----------------------------------------------------//
@@ -1900,7 +1896,9 @@ GLfloat phi_of (GLfloat x, GLfloat y, GLfloat z) {
 
 // (n=1,l=0,ml=0)
 GLfloat _100_eq(GLfloat r, GLfloat theta, GLfloat phi) {
-    GLfloat wavefunction = exp(-r) / sqrt(PI);
+    const GLfloat max_prob_amp = 1.0f * std::pow(10, 0); // Calculate manually
+
+    GLfloat wavefunction = 1 / max_prob_amp * exp(-r) / sqrt(PI);
     return pow(wavefunction, 2);
 }
 
@@ -1908,14 +1906,15 @@ GLfloat _100_eq(GLfloat r, GLfloat theta, GLfloat phi) {
 GLfloat _200_eq(GLfloat r, GLfloat theta, GLfloat phi) {
     const GLfloat max_prob_amp = 1.0f * std::pow(10, -1); // Calculate manually
     
-    GLfloat wavefunction = 1/ max_prob_amp * 1/8 / pow(2.0*PI, 0.5) * (2-r) * exp(-r/2);
-    //std::cout << "Prob density = " << pow(wavefunction, 2) << std::endl;
-    return pow(wavefunction, 2);
+    GLfloat wavefunction = 1 / max_prob_amp * 1/8 / pow(2.0*PI, 0.5) * (2-r) * exp(-r/2);
+    return abs(wavefunction);//pow(wavefunction, 2);
 }
 
 // (n=2,l=1,ml=0)
 GLfloat _210_eq(GLfloat r, GLfloat theta, GLfloat phi) {
-    GLfloat wavefunction = cos(theta) * exp(-r/2);
+    const GLfloat max_prob_amp = 8.7f * std::pow(10, -1); // Calculate manually
+
+    GLfloat wavefunction = 1 / max_prob_amp * r * exp(-r/2) * cos(theta);
     return pow(wavefunction, 2);
 }
 
@@ -1923,28 +1922,29 @@ GLfloat _210_eq(GLfloat r, GLfloat theta, GLfloat phi) {
 GLfloat _211_eq(GLfloat r, GLfloat theta, GLfloat phi) {
     const GLfloat max_prob_amp = 7.5 * std::pow(10, -1); // Calculate manually
 
-    GLfloat wavefunction = 1 / max_prob_amp * r * exp(-r/2) * sin(theta) * cos(phi);
+    // The imaginary portion is not included here because in the probability density the conplex conjugate cancels it out.
+    GLfloat wavefunction = 1 / max_prob_amp * r * exp(-r/2) * sin(theta);
     return pow(wavefunction, 2);
 }
 
 GLfloat _300_eq(GLfloat r, GLfloat theta, GLfloat phi) {
-    const GLfloat max_prob_amp = 10 * std::pow(10, -1); // Calculate manually
+    const GLfloat max_prob_amp = 25 * std::pow(10, -1); // Calculate manually
 
-    GLfloat wavefunction = 1 / max_prob_amp * (1 - 2/3*r + 2/27*pow(r,2)) * exp(-r/3);
+    GLfloat wavefunction = 1 / max_prob_amp * (27 - 18*r + 2*r*r) * exp(-r/2);
     return pow(wavefunction, 2);
 }
 
 GLfloat _310_eq(GLfloat r, GLfloat theta, GLfloat phi) {
-    const GLfloat max_prob_amp = 15 * std::pow(10, -1); // Calculate manually
+    const GLfloat max_prob_amp = 4 * std::pow(10, 0); // Calculate manually
 
-    GLfloat wavefunction = 1 / max_prob_amp * (r - 1/6*pow(r,2)) * exp(-r/3) * cos(theta);
+    GLfloat wavefunction = 1 / max_prob_amp * (6 - r) * r * exp(-r/3) * cos(theta);
     return pow(wavefunction, 2);
 }
 
 GLfloat _311_eq(GLfloat r, GLfloat theta, GLfloat phi) {
-    const GLfloat max_prob_amp = 15 * std::pow(10, -1); // Calculate manually
+    const GLfloat max_prob_amp = 4.5 * std::pow(10, 0); // Calculate manually
 
-    GLfloat wavefunction = 1 / max_prob_amp * (r - 1/6*pow(r,2)) * exp(-r/3) * sin(theta) * cos(phi);
+    GLfloat wavefunction = 1 / max_prob_amp * (6 - r) * r * exp(-r/3) * sin(theta);
     return pow(wavefunction, 2);
 }
 
@@ -1958,14 +1958,14 @@ GLfloat _320_eq(GLfloat r, GLfloat theta, GLfloat phi) {
 GLfloat _321_eq(GLfloat r, GLfloat theta, GLfloat phi) {
     const GLfloat max_prob_amp = 25.f * std::pow(10, -1); // Calculate manually
 
-    GLfloat wavefunction = 1 / max_prob_amp * pow(r,2) * exp(-r/3) * sin(theta) * cos(theta) * cos(phi);
+    GLfloat wavefunction = 1 / max_prob_amp * pow(r,2) * exp(-r/3) * sin(theta) * cos(theta);
     return pow(wavefunction, 2);
 }
 
 GLfloat _322_eq(GLfloat r, GLfloat theta, GLfloat phi) {
     const GLfloat max_prob_amp = 48.f * std::pow(10, -1); // Calculate manually
 
-    GLfloat wavefunction = 1 / max_prob_amp * pow(r,2) * exp(-r/3) * pow(sin(theta) , 2) * cos(2 * phi);
+    GLfloat wavefunction = 1 / max_prob_amp * pow(r,2) * exp(-r/3) * pow(sin(theta) , 2);
     return pow(wavefunction, 2);
 }
 //-------------------------------END EQUATIONS-----------------------------------------------------//

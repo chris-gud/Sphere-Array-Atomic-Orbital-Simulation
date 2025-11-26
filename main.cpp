@@ -15,8 +15,8 @@ that the probability density decreases to 0 outside of the axis volume. The scal
 each orbital is printed to terminal for the viewer's reference.
 
  How is this simulation different from the rest? Most depictions of the orbitals of the hydrogen
-atom depict a surface called an isosurface, where points of constant probability are bridged to form
-a surface However, this misplaces a lot of information; the viewer cannot visualize the probability
+atom depict something called an isosurface, where points of constant probability are bridged to form
+a surface. However, this misplaces a lot of information; the viewer cannot visualize the probability
 densities within the surface. A naive viewer may be led to believe that the probability density is thus
 uniform within the surface. This is not the case. This program is meant to prove it.
 

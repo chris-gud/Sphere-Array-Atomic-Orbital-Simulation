@@ -14,12 +14,11 @@ manually set to display the most interesting parts of each orbital clearly. The 
 each orbital is printed to terminal for the viewer's reference. The viewer can assume
 that the probability density decreases to 0 outside of the axis volume. 
  
-&nbsp;&nbsp;How is this simulation different from the rest? Most depictions of the orbitals of the hydrogen 
-atom depict a surface. The creator chooses some cutoff probability (90% usually) for which to depict
-a surface, within which the electron has that cutoff probability of existing inside of at any time. However, this
-fails to convey a lot of information; the viewer cannot visualize the probability densities within the surface.
-A naive viewer may be led to believe that the probability density is thus uniform within the surface.
-This is not the case. This program is meant to prove it.  
+&nbsp;&nbsp;How is this simulation different from the rest? Most depictions of the orbitals of the hydrogen
+atom depict a surface called an isosurface, where points of constant probability are bridged to form
+a surface However, this misplaces a lot of information; the viewer cannot visualize the probability
+densities within the surface. A naive viewer may be led to believe that the probability density is thus
+uniform within the surface. This is not the case. This program is meant to prove it.
   
   
 ## CONTROLS:   
@@ -28,6 +27,8 @@ This is not the case. This program is meant to prove it.
   S : move backwards away from the plane of the screen  
   A : move left upon the plane of the screen  
   D : move right upon the plane of the screen  
+  CNTRL : down (-y)
+  SPACE : up (+y)
   Mouse : click and drag to change camera angle    
 
 
@@ -37,16 +38,16 @@ Quantum numbers: n = 1, l = 0, ml = 0
 <img width="950" alt="Image" src="https://github.com/user-attachments/assets/909b11bd-faba-46ad-b458-c6f81b00f0c8" />
 
 Quantum numbers: n = 2, l = 1, ml = 1
-<img width="849" alt="Image" src="https://github.com/user-attachments/assets/91e99976-0829-4779-bde7-df8867ba79c3" />
+<img width="880" height="728" alt="Image" src="https://github.com/user-attachments/assets/ac7840ce-d2d2-4c5a-939d-f0ccb4a9fcce" />
 
 Quantum numbers: n = 3, l = 1, ml = 0
-<img width="832" alt="Image" src="https://github.com/user-attachments/assets/4bc286d5-6f3a-4194-ab32-34415b85d1a6" />
+<img width="880" height="728" alt="Image" src="https://github.com/user-attachments/assets/de8e54a9-34a6-4d12-85ba-435ce8d0a77a" />
 
 Quantum numbers: n = 3, l = 2, ml = 0
-<img width="1002" alt="Image" src="https://github.com/user-attachments/assets/bddaa497-da7b-4e81-b2ee-fd7b567bac4b" />
+<img width="880" height="728" alt="Image" src="https://github.com/user-attachments/assets/3942e503-e934-4943-803b-1823562c68ec" />
 
 Quantum numbers: n = 3, l = 2, ml = 1
-<img width="832" alt="Image" src="https://github.com/user-attachments/assets/1e3f55ed-303d-403e-ad87-0576cfc8a63a" />
+<img width="880" height="728" alt="Image" src="https://github.com/user-attachments/assets/b4d7442f-2b7c-413c-8ec7-f66e7a34a726" />
 
 
 ## ACKNOWLEDGEMENTS

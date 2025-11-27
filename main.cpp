@@ -1907,7 +1907,7 @@ GLfloat _200_eq(GLfloat r, GLfloat theta, GLfloat phi) {
     const GLfloat max_prob_amp = 1.0f * std::pow(10, -1); // Calculate manually
     
     GLfloat wavefunction = 1 / max_prob_amp * 1/8 / pow(2.0*PI, 0.5) * (2-r) * exp(-r/2);
-    return abs(wavefunction);//pow(wavefunction, 2);
+    return pow(wavefunction, 2);
 }
 
 // (n=2,l=1,ml=0)

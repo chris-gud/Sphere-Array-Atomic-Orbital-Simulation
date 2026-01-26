@@ -4,6 +4,8 @@ Atomic orbital simulator using a sphere-array discretization to approximate wave
 BY CHRIS GUDMUNDSEN  
 DEC. 2024  
 
+## Summary
+
 &nbsp;&nbsp;This program is meant to calculate and display the probability density functions of an electron in 
 the hydrogen atom. Once the user enters their desired quantum numbers, a window is created with 3 axes
 and hundreds of spheres arranged in a cube. The electron probability density at several points in 3D space is represented by the

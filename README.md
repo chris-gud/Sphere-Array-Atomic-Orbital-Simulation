@@ -1,4 +1,6 @@
 # HYDROGEN ATOM ORBITAL SIMULATOR
+Atomic orbital simulator using a sphere-array discretization to approximate wavefunctions in 3D. Focuses on orbital geometry, internal structure, and symmetry with numerical sampling.
+
 BY CHRIS GUDMUNDSEN  
 DEC. 2024  
 
